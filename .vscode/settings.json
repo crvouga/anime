@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["gridsome"]
+  "cSpell.words": ["gridsome", "starwars"],
+  // docs https://gridsome.org/docs/dev-tools/
+  "vetur.grammar.customBlocks": {
+    "docs": "md",
+    "i18n": "json",
+    "page-query": "graphql",
+    "static-query": "graphql"
+  }
 }

@@ -5,6 +5,15 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Star Wars",
-  plugins: [],
+  siteName: "Anime",
+  plugins: [
+    // docs: https://gridsome.org/plugins/@gridsome/source-graphql
+    {
+      use: "@gridsome/source-graphql",
+      options: {
+        url: "https://graphql.anilist.co/",
+        fieldName: "anime",
+      },
+    },
+  ],
 };
