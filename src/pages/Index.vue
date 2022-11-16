@@ -17,9 +17,11 @@ export default {
     <!-- Learn how to use images here: https://gridsome.org/docs/images -->
     <g-image alt="Example image" src="~/favicon.png" width="135" />
 
-    <h1>Hello, world!</h1>
+    <h1 class="h1">Hello, world!</h1>
 
-    <button @click="count++">Clicked {{ count }}</button>
+    <button class="btn btn-primary" @click="count++">
+      Clicked {{ count }}
+    </button>
 
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
