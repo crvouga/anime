@@ -10,6 +10,7 @@
     "@gridsome/source-graphql": "^0.1.0",
     "bootstrap": "4",
     "bootstrap-vue": "^2.23.1",
-    "gridsome": "^0.7.0"
+    "gridsome": "^0.7.0",
+    "zod": "^3.19.1"
   }
 }

@@ -31,7 +31,7 @@ import PosterCard from "../components/PosterCard.vue";
           v-for="media in $page.anime.Page.media"
           :key="media.id"
         >
-          <g-link :to="`/anime/${media.id}`">
+          <g-link class="link" :to="`/anime/${media.id}`">
             <PosterCard
               :src="media.coverImage.extraLarge"
               :title="media.title.english ?? media.title.native"
