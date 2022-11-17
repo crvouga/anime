@@ -73,7 +73,7 @@ const relations = ($page) => media($page).relations.nodes;
       <section class="container">
         <h1 class="mb-0">{{ title($page) }}</h1>
         <p class="h6 text-muted mb-0">{{ dateRange($page) }}</p>
-        <div class="d-flex gap mt-1 flex-wrap">
+        <div class="d-flex genre-gap mt-1 flex-wrap">
           <b-badge
             pill
             variant="primary"
@@ -94,7 +94,7 @@ const relations = ($page) => media($page).relations.nodes;
         <h5>
           Related Titles
         </h5>
-        <div class="d-flex overflow-x-scroll">
+        <div class="d-flex overflow-x-scroll poster-gap">
           <div
             class="poster-container"
             v-for="relation in relations($page)"
@@ -116,7 +116,7 @@ const relations = ($page) => media($page).relations.nodes;
 </template>
 
 <style scoped>
-.gap {
+.genre-gap {
   gap: calc(0.33rem);
 }
 .object-cover {
@@ -127,6 +127,10 @@ const relations = ($page) => media($page).relations.nodes;
 }
 
 .poster-container {
-  min-width: 120px;
+  max-width: 150px;
+  min-width: 150px;
+}
+.poster-gap {
+  gap: 0.5rem;
 }
 </style>
