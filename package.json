@@ -4,10 +4,13 @@
   "scripts": {
     "build": "gridsome build",
     "dev": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "sanity:start": "cd sanity-studio && npx @sanity/cli start",
+    "sanity:deploy": "cd sanity-studio && npx @sanity/cli deploy"
   },
   "dependencies": {
     "@gridsome/source-graphql": "^0.1.0",
+    "@sanity/client": "^3.4.1",
     "bootstrap": "4",
     "bootstrap-vue": "^2.23.1",
     "graphql-request": "^5.0.0",
