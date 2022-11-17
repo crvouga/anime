@@ -78,7 +78,7 @@ const genres = ($page) => media($page).genres;
       <section class="container">
         <h1 class="mb-0">{{ title($page) }}</h1>
         <p class="h6 text-muted mb-0">{{ dateRange($page) }}</p>
-        <div class="d-flex gap-2 mt-1">
+        <div class="d-flex gap mt-1 flex-wrap">
           <div
             class="badge badge-pill badge-primary"
             v-for="genre in genres($page)"
@@ -94,8 +94,8 @@ const genres = ($page) => media($page).genres;
 </template>
 
 <style scoped>
-.gap-2 {
-  gap: calc(0.25rem * 2);
+.gap {
+  gap: calc(0.33rem);
 }
 .object-cover {
   object-fit: cover;

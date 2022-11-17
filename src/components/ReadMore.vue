@@ -14,7 +14,7 @@ const isCollapsed = ref(true);
     ></p>
     <p class="m-0" v-else v-html="content"></p>
     <b-button
-      variant="link"
+      variant="primary"
       size="sm"
       class="mt-1 mx-auto d-block"
       style="margin:auto"

@@ -39,6 +39,9 @@ module.exports = function(api) {
         context: {
           id: media.id,
         },
+        queryVariables: {
+          id: media.id,
+        },
       });
     }
   });
