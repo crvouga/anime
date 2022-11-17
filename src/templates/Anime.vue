@@ -18,6 +18,21 @@ query($id: Int) {
         }
         episodes
         genres
+        relations {
+          nodes {
+            id
+            title {
+              english
+              native
+            }
+            coverImage {
+              extraLarge
+            }
+            startDate {
+              year
+            }
+          }
+        }
       }
     }
   }
@@ -27,35 +42,9 @@ query($id: Int) {
 
 <script setup>
 import AspectRatio from "../components/AspectRatio.vue";
+import PosterCard from "../components/PosterCard.vue";
 import ReadMore from "../components/ReadMore.vue";
 
-/**
- *
- * @typedef Title
- * @type {object}
- * @prop english {string}
- * @prop native {string}
- *
- * @typedef Date
- * @type {object}
- * @prop year {number | null}
- *
- * @typedef Media
- * @type {object}
- * @prop {number} id
- * @prop {string} bannerImage
- * @prop {string} description
- * @prop {Title} title
- * @prop {Date} startDate
- * @prop {Date} endDate
- * @prop {number} episodes
- * @prop {string[]} genres
- *
- */
-
-/**
- * @return {Media}
- */
 const media = ($page) => $page.anime.Page.media[0];
 const bannerImage = ($page) => media($page).bannerImage ?? "";
 const title = ($page) =>
@@ -63,10 +52,16 @@ const title = ($page) =>
 const startYear = ($page) => media($page).startDate.year;
 const endYear = ($page) => media($page).endDate.year ?? "Current";
 const dateRange = ($page) => {
-  return `${startYear($page)} to ${endYear($page)}`;
+  const start = startYear($page);
+  const end = endYear($page);
+  if (start === end) {
+    return start;
+  }
+  return `${start} to ${end}`;
 };
 const description = ($page) => media($page).description;
 const genres = ($page) => media($page).genres;
+const relations = ($page) => media($page).relations.nodes;
 </script>
 
 <template>
@@ -79,15 +74,42 @@ const genres = ($page) => media($page).genres;
         <h1 class="mb-0">{{ title($page) }}</h1>
         <p class="h6 text-muted mb-0">{{ dateRange($page) }}</p>
         <div class="d-flex gap mt-1 flex-wrap">
-          <div
-            class="badge badge-pill badge-primary"
+          <b-badge
+            pill
+            variant="primary"
             v-for="genre in genres($page)"
             v-bind:key="genre"
           >
             {{ genre }}
+          </b-badge>
+        </div>
+        <ReadMore
+          class="text-muted mt-2"
+          :max-length="200"
+          :content="description($page)"
+        />
+      </section>
+
+      <section class="container mt-3">
+        <h5>
+          Related Titles
+        </h5>
+        <div class="d-flex overflow-x-scroll">
+          <div
+            class="poster-container"
+            v-for="relation in relations($page)"
+            v-bind:key="relation.id"
+          >
+            <g-link class="link" :to="`/anime/${relation.id}`">
+              <PosterCard
+                class="w-100"
+                :src="relation.coverImage.extraLarge"
+                :title="relation.title.english ?? relation.title.native"
+                :subtitle="relation.startDate.year"
+              />
+            </g-link>
           </div>
         </div>
-        <ReadMore class="text-muted mt-2" :content="description($page)" />
       </section>
     </main>
   </Layout>
@@ -99,5 +121,12 @@ const genres = ($page) => media($page).genres;
 }
 .object-cover {
   object-fit: cover;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.poster-container {
+  min-width: 120px;
 }
 </style>

@@ -1,7 +1,10 @@
 <script setup>
 import { computed, ref } from "vue";
 
-const props = defineProps(["content"]);
+defineProps({
+  content: String,
+  maxLength: Number,
+});
 const isCollapsed = ref(true);
 </script>
 
@@ -10,10 +13,11 @@ const isCollapsed = ref(true);
     <p
       class="m-0"
       v-if="isCollapsed"
-      v-html="`${content.slice(0, 200)}...`"
+      v-html="`${content.slice(0, maxLength)}...`"
     ></p>
     <p class="m-0" v-else v-html="content"></p>
     <b-button
+      v-if="content.length > maxLength"
       variant="primary"
       size="sm"
       class="mt-1 mx-auto d-block"
