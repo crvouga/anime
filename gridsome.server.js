@@ -11,6 +11,7 @@ module.exports = function(api) {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   });
 
+  // https://gridsome.org/docs/dynamic-routing/#generating-rewrite-rules
   api.afterBuild(({ redirects }) => {
     for (const rule of redirects) {
       // rule.from   - The dynamic path
