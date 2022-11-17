@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["gridsome", "starwars"],
+  "cSpell.words": ["gridsome", "starwars", "Vouga"],
   // docs https://gridsome.org/docs/dev-tools/
   "vetur.grammar.customBlocks": {
     "docs": "md",

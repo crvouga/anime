@@ -17,6 +17,12 @@ query {
     </nav>
 
     <slot />
+
+    <footer class="container foot">
+      <g-link class="link" to="https://www.chrisvouga.dev/">
+        Made with ❤️ by Chris Vouga
+      </g-link>
+    </footer>
   </div>
 </template>
 
@@ -29,5 +35,14 @@ query {
 }
 .top-0 {
   top: 0;
+}
+
+.foot {
+  width: 100%;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
