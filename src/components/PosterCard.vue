@@ -1,22 +1,37 @@
-<script setup>
+<script>
 import AspectRatio from "./AspectRatio.vue";
 import Poster from "./Poster.vue";
 
-defineProps(["src", "title", "subtitle"]);
+export default {
+  components: {
+    AspectRatio,
+    Poster,
+  },
+  props: {
+    src: String,
+    title: String,
+    subtitle: String,
+    loading: Boolean,
+  },
+};
 </script>
 
 <template>
   <AspectRatio class="rounded border overflow-hidden" w="18" h="32">
-    <Poster :src="src" />
-    <div class="container pt-2">
-      <div class="row">
-        <h5 class="col-12 text-truncate">
+    <Poster :loading="loading" :src="src" />
+    <div class="p-2">
+      <b-skeleton-wrapper :loading="loading">
+        <template #loading>
+          <b-skeleton class="mb-3" width="100%"></b-skeleton>
+          <b-skeleton width="50%"></b-skeleton>
+        </template>
+        <h5 class="text-truncate">
           {{ title }}
         </h5>
-        <h6 class="col-12 text-muted text-truncate">
+        <h6 class="text-muted text-truncate">
           {{ subtitle }}
         </h6>
-      </div>
+      </b-skeleton-wrapper>
     </div>
   </AspectRatio>
 </template>

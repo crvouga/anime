@@ -10,7 +10,7 @@ export default {
     return {
       error: null,
       data: null,
-      pending: false,
+      pending: true,
     };
   },
   computed: {
@@ -47,7 +47,19 @@ export default {
 
 <template>
   <Layout>
-    <div class="container">
+    <main v-if="pending" class="container">
+      <div class="row p-0">
+        <div
+          class="col-6 col-sm-4 col-md-3 col-lg-2 p-2"
+          v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          :key="n"
+        >
+          <PosterCard loading />
+        </div>
+      </div>
+    </main>
+
+    <main v-else class="container">
       <div class="row p-0">
         <div
           class="col-6 col-sm-4 col-md-3 col-lg-2 p-2"
@@ -63,6 +75,6 @@ export default {
           </g-link>
         </div>
       </div>
-    </div>
+    </main>
   </Layout>
 </template>
