@@ -11,6 +11,15 @@ module.exports = function(api) {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
   });
 
+  api.afterBuild(({ redirects }) => {
+    for (const rule of redirects) {
+      // rule.from   - The dynamic path
+      // rule.to     - The HTML file path
+      // rule.status - 200 if rewrite rule
+      console.log(rule);
+    }
+  });
+
   api.createPages(async ({ createPage, graphql }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/
     // docs: https://gridsome.org/docs/pages-api/#create-pages-from-graphql

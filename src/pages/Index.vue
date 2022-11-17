@@ -51,7 +51,7 @@ export default {
       <div class="row p-0">
         <div
           class="col-6 col-sm-4 col-md-3 col-lg-2 p-2"
-          v-for="n in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+          v-for="n in [...new Array(25)].map((_, i) => i)"
           :key="n"
         >
           <PosterCard loading />
