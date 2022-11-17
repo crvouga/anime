@@ -8,13 +8,13 @@ module.exports = {
   siteName: "Anime",
   plugins: [
     // docs: https://gridsome.org/plugins/@gridsome/source-graphql
-    {
-      use: "@gridsome/source-graphql",
-      options: {
-        url: "https://graphql.anilist.co/",
-        fieldName: "anime",
-      },
-    },
+    // {
+    //   use: "@gridsome/source-graphql",
+    //   options: {
+    //     url: "https://graphql.anilist.co/",
+    //     fieldName: "anime",
+    //   },
+    // },
   ],
   // this doesn't work with gql source plugin
   // docs:https://gridsome.org/docs/templates/
