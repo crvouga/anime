@@ -1,24 +1,3 @@
-<page-query>
-query GetAnime($id: Int) {
-  anime {
-    Page {
-      media(id: $id) {
-        id
-        bannerImage
-        description
-        startDate {
-          year
-        }
-        title {
-          english
-          native
-        }
-      }
-    }
-  }
-}
-</page-query>
-
 <script setup>
 import AspectRatio from "../components/AspectRatio.vue";
 import ReadMore from "../components/ReadMore.vue";
@@ -40,7 +19,7 @@ const description = ($page) => media($page).description;
       <section class="container">
         <h1 class="mb-0">{{ title($page) }}</h1>
         <p class="h6 text-muted">{{ startYear($page) }}</p>
-        <ReadMore :content="description($page)" />
+        <ReadMore class="text-muted" :content="description($page)" />
       </section>
     </main>
   </Layout>
@@ -51,3 +30,24 @@ const description = ($page) => media($page).description;
   object-fit: cover;
 }
 </style>
+
+<page-query>
+query ($id: Int) {
+  anime {
+    Page {
+      media(id: $id) {
+        id
+        bannerImage
+        description
+        startDate {
+          year
+        }
+        title {
+          english
+          native
+        }
+      }
+    }
+  }
+}
+</page-query>

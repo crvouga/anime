@@ -13,12 +13,16 @@ const isCollapsed = ref(true);
       v-html="`${content.slice(0, 200)}...`"
     ></p>
     <p class="m-0" v-else v-html="content"></p>
-    <button
-      class="btn btn-primary btn-sm"
+    <b-button
+      variant="link"
+      size="sm"
+      class="mt-1 mx-auto d-block"
       style="margin:auto"
       @click="isCollapsed = !isCollapsed"
     >
+      <b-icon-chevron-down v-if="isCollapsed" />
+      <b-icon-chevron-up v-else />
       {{ isCollapsed ? "Show More" : "Show Less" }}
-    </button>
+    </b-button>
   </div>
 </template>
