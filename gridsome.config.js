@@ -16,4 +16,13 @@ module.exports = {
       },
     },
   ],
+  // docs:https://gridsome.org/docs/templates/
+  templates: {
+    Anime: [
+      {
+        component: "./src/templates/Anime.vue",
+        path: "/anime/:id",
+      },
+    ],
+  },
 };

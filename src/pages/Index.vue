@@ -31,11 +31,13 @@ import PosterCard from "../components/PosterCard.vue";
           v-for="media in $page.anime.Page.media"
           :key="media.id"
         >
-          <PosterCard
-            :src="media.coverImage.extraLarge"
-            :title="media.title.english ?? media.title.native"
-            :subtitle="media.seasonYear"
-          />
+          <g-link :to="`/anime/${media.id}`">
+            <PosterCard
+              :src="media.coverImage.extraLarge"
+              :title="media.title.english ?? media.title.native"
+              :subtitle="media.seasonYear"
+            />
+          </g-link>
         </div>
       </div>
     </div>
