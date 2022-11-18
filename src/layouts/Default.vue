@@ -35,8 +35,10 @@ export default {
       class="scrollbar-jitter-fix position-sticky top-0 z-index-nav font-semi-bold"
     >
       <div class="container">
-        <b-navbar-brand class="ml-3 font-weight-bold" @click="push('/')">
-          {{ $static.metadata.siteName }}
+        <b-navbar-brand class="ml-3">
+          <g-link class="font-weight-bold text-white" to="/">
+            {{ $static.metadata.siteName }}
+          </g-link>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
