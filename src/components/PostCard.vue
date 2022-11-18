@@ -29,7 +29,7 @@ export default {
         <div class="flex-1"></div>
         <div class="d-flex align-items-center">
           <b-avatar class="mr-2" :src="authorImage" />
-          <p class="m-0">{{ authorName }}</p>
+          <p class="m-0 text-muted">{{ authorName }}</p>
         </div>
       </div>
     </div>
