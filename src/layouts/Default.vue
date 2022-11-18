@@ -22,6 +22,9 @@ query {
       <g-link class="link" to="https://www.chrisvouga.dev/">
         Made with ❤️ by Chris Vouga
       </g-link>
+      <g-link class="link" to="https://animechrisvouga.sanity.studio/">
+        Sanity Studio
+      </g-link>
     </footer>
   </div>
 </template>
@@ -44,5 +47,7 @@ query {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 </style>
