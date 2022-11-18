@@ -6,15 +6,58 @@ query {
 }
 </static-query>
 
+<script>
+export default {
+  data() {
+    return {
+      activePath: this.$router.currentRoute.path,
+    };
+  },
+};
+</script>
+
 <template>
   <div>
-    <nav class="nav position-sticky top-0 bg-white z-index-100">
-      <div class="container py-2">
-        <g-link class="logo h3 m-0" to="/">{{
-          $static.metadata.siteName
-        }}</g-link>
-      </div>
-    </nav>
+    <b-navbar
+      toggleable="lg"
+      type="dark"
+      variant="primary"
+      class="position-sticky top-0 z-index-nav"
+    >
+      <b-container>
+        <b-navbar-brand>
+          <g-link class="text-white font-bold" to="/">
+            {{ $static.metadata.siteName }}
+          </g-link>
+        </b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item :active="activePath === '/'">
+              <g-link class="text-inherit font-semi-bold" to="/">
+                Home
+              </g-link>
+            </b-nav-item>
+
+            <b-nav-item :active="activePath === '/post'">
+              <g-link class="text-inherit font-semi-bold" to="/post">
+                Posts
+              </g-link>
+            </b-nav-item>
+
+            <b-nav-item :active="activePath === '/author'">
+              <g-link class="text-inherit font-semi-bold" to="/author">
+                Authors
+              </g-link>
+            </b-nav-item>
+          </b-navbar-nav>
+
+          <!-- Right aligned nav items -->
+        </b-collapse>
+      </b-container>
+    </b-navbar>
 
     <slot />
 
@@ -30,7 +73,7 @@ query {
 </template>
 
 <style scoped>
-.z-index-100 {
+.z-index-nav {
   z-index: 100;
 }
 .logo {
@@ -49,5 +92,17 @@ query {
   justify-content: center;
   flex-direction: column;
   gap: 1rem;
+}
+
+.font-bold {
+  font-weight: 900;
+}
+
+.font-semi-bold {
+  font-weight: 700;
+}
+
+.text-inherit {
+  color: inherit;
 }
 </style>
