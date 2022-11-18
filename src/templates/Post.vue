@@ -19,7 +19,10 @@ export default {
             <h1>
               {{ $page.post.title }}
             </h1>
-            <div class="d-flex category-gap">
+            <h6 class="text-muted">
+              {{ new Date($page.post.publishedAt).toDateString() }}
+            </h6>
+            <div class="d-flex gap-1x3rem">
               <div
                 v-for="category in $page.post.categories"
                 v-bind:key="category.id"
@@ -28,15 +31,12 @@ export default {
                 {{ category.title }}
               </div>
             </div>
-            <div>
+            <div class="mt-2 d-flex align-items-center">
               <b-avatar :src="$page.post.author.image" />
-              <p class="d-block">
+              <p class="ml-2 m-0 ">
                 {{ $page.post.author.name }}
               </p>
             </div>
-            <h6>
-              {{ new Date($page.post.publishedAt).toDateString() }}
-            </h6>
           </div>
           <div class="border-top p-4">
             <p>
@@ -73,7 +73,7 @@ query getPost($id: ID!) {
 </page-query>
 
 <style scoped>
-.category-gap {
+.gap-1x3rem {
   gap: 0.333rem;
 }
 </style>
