@@ -43,11 +43,11 @@ export default {
 </script>
 
 <template>
-  <AspectRatio :w="7" :h="8" class="rounded border">
-    <g-link
-      :to="`/post/${id}`"
-      class="w-100 h-100 d-flex flex-column link text-decoration-none"
-    >
+  <g-link
+    :to="`/post/${id}`"
+    class="d-block w-100 h-100 d-flex flex-column link text-decoration-none"
+  >
+    <AspectRatio :w="7" :h="8" class="rounded border">
       <AspectRatio class="w-100" :w="16" :h="9">
         <b-img-lazy class="w-100 h-100 object-cover" :src="image" />
       </AspectRatio>
@@ -77,8 +77,8 @@ export default {
           <p class="m-0">{{ authorName }}</p>
         </g-link>
       </div>
-    </g-link>
-  </AspectRatio>
+    </AspectRatio>
+  </g-link>
 </template>
 
 <style scoped>
