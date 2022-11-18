@@ -78,7 +78,7 @@ export default {
 <template>
   <Layout>
     <section class="container">
-      <h2 class="row px-2">
+      <h2 class="row m-0">
         Posts
       </h2>
       <div class="row">
@@ -104,7 +104,7 @@ export default {
     </section>
 
     <section v-if="pending" class="container mt-5">
-      <h2 class="row px-2">
+      <h2 class="row px-2 m-0">
         Anime
       </h2>
       <div class="row p-0">
