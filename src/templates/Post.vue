@@ -66,8 +66,6 @@ query getPost($id: ID!) {
       id
       name
       image
-      slug
-      bio
     }
   }
 }
