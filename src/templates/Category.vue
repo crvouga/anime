@@ -38,17 +38,38 @@ export default {
     <main class="container text-center py-2">
       <div class="row">
         <div class="col-12">
-          <p class="h4 m-0 text-muted">
+          <b-breadcrumb>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/">
+                Home
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/post">
+                Posts
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item disabled>
+              <div class="badge badge-primary">
+                {{ $page.category.title }}
+              </div>
+            </b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <p class="h6 m-0 text-muted">
             Category
           </p>
           <div class="mt-2" />
-          <p class="h2 bg-primary text-white d-inline px-2 py-1 rounded m-0">
+          <p class="h5 bg-primary text-white d-inline px-2 py-1 rounded m-0">
             {{ $page.category.title }}
           </p>
         </div>
       </div>
 
-      <div class="row mt-4">
+      <div class="row mt-2">
         <div
           class="col-lg-4 col-md-6 col-12 p-2"
           v-for="post of $page.category.posts"

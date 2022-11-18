@@ -39,10 +39,30 @@ export default {
 
 <template>
   <Layout>
-    <main class="container">
+    <main class="container mt-2">
+      <div class="row">
+        <div class="col-12">
+          <b-breadcrumb>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/">
+                Home
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/author">
+                Authors
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item disabled>
+              {{ $page.author.name }}
+            </b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
+      </div>
+
       <div class="row justify-content-center">
         <div
-          class="col-sm-10 col-md-8 col-lg-6 p-4 d-flex justify-content-center align-items-center flex-column"
+          class="col-sm-10 col-md-8 col-lg-6 px-4 d-flex justify-content-center align-items-center flex-column"
         >
           <b-avatar class="avatar-size" :src="$page.author.image" />
 
@@ -58,9 +78,9 @@ export default {
 
       <div class="row">
         <div class="col-12 col-lg-8 container">
-          <div class="row">
-            <div class="col-12 col-lg-8">
-              <h2 class="m-0">
+          <div class="row justify-content-center">
+            <div class="col-12 mt-4">
+              <h2 class="m-0 text-center">
                 Posts
               </h2>
             </div>

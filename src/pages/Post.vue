@@ -1,5 +1,13 @@
 <page-query>
 {
+  allCategory {
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
   allPost {
     edges {
       node {
@@ -20,7 +28,7 @@
       }
     }
   }
-}    
+}
 </page-query>
 <script>
 import PostCard from "../components/PostCard.vue";
@@ -34,8 +42,43 @@ export default {
 
 <template>
   <Layout>
-    <main class="container mt-4">
-      <h2 class="row m-0">
+    <main class="container mt-2">
+      <div class="row">
+        <div class="col-12">
+          <b-breadcrumb>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/">
+                Home
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item>
+              Posts
+            </b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
+      </div>
+
+      <h2 class="row d-block m-0 text-center">
+        Categories
+      </h2>
+      <div class="row mt-2 justify-content-center">
+        <div
+          class="col-12 d-flex flex-wrap badge-gap justify-content-center w-100"
+        >
+          <g-link
+            :to="`/category/${edge.node.id}`"
+            class="link"
+            v-for="edge of $page.allCategory.edges"
+            v-bind:key="edge.node.id"
+          >
+            <div class="badge badge-primary badge-size">
+              {{ edge.node.title }}
+            </div>
+          </g-link>
+        </div>
+      </div>
+
+      <h2 class="row m-0 d-block mt-4 text-center">
         Posts
       </h2>
       <div class="row">
@@ -60,3 +103,17 @@ export default {
     </main>
   </Layout>
 </template>
+
+<style scoped>
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.badge-gap {
+  gap: 0.5rem;
+}
+
+.badge-size {
+  font-size: 1.25rem;
+}
+</style>

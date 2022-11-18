@@ -28,7 +28,22 @@ export default {
 
 <template>
   <Layout>
-    <main class="container mt-4">
+    <main class="container mt-2">
+      <div class="row">
+        <div class="col-12">
+          <b-breadcrumb>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/">
+                Home
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item>
+              Authors
+            </b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
+      </div>
+
       <h2 class="row m-0">
         Authors
       </h2>

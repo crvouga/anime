@@ -9,7 +9,27 @@ export default {
 </script>
 <template>
   <Layout>
-    <main class="container">
+    <main class="container mt-2">
+      <div class="row">
+        <div class="col-12">
+          <b-breadcrumb>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/">
+                Home
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item>
+              <g-link class="link" to="/post">
+                Posts
+              </g-link>
+            </b-breadcrumb-item>
+            <b-breadcrumb-item disabled class="text-truncate">
+              {{ $page.post.title }}
+            </b-breadcrumb-item>
+          </b-breadcrumb>
+        </div>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col-sm-10 col-md-8 col-lg-6 border rounded p-0">
           <AspectRatio :w="16" :h="9">
