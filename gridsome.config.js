@@ -28,7 +28,7 @@ module.exports = {
     Post: [
       {
         component: "./src/templates/Post.vue",
-        path: "/post/:slug",
+        path: "/post/:id",
       },
     ],
   },
