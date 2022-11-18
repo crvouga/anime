@@ -69,15 +69,18 @@ module.exports = function(api) {
 
     const authors = await sanityClient.fetch(`
       *[_type == "author"]{
-        _id,
-        name,
-        "image": image.asset->{
-          url,
-          metadata
-        },
-        "slug": slug.current,
-        bio,
-      }
+          _id,
+          name,
+          "image": image.asset->{
+            url,
+            metadata
+          },
+          "slug": slug.current,
+          bio,
+          "posts": *[_type == "post" && author._ref == ^._id]{
+            _id,
+          }
+        }
     `);
 
     for (const author of authors) {
@@ -87,6 +90,10 @@ module.exports = function(api) {
         image: author.image.url,
         slug: author.slug,
         bio: author.bio,
+        posts: store.createReference(
+          typeName.Post,
+          author.posts.map((post) => post._id)
+        ),
       });
     }
 

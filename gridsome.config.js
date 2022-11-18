@@ -31,5 +31,11 @@ module.exports = {
         path: "/post/:id",
       },
     ],
+    Author: [
+      {
+        component: "./src/templates/Author.vue",
+        path: "/author/:id",
+      },
+    ],
   },
 };

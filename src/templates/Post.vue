@@ -31,12 +31,15 @@ export default {
                 {{ category.title }}
               </div>
             </div>
-            <div class="mt-2 d-flex align-items-center">
+            <g-link
+              :to="`/author/${$page.post.author.id}`"
+              class="link mt-2 d-flex align-items-center"
+            >
               <b-avatar :src="$page.post.author.image" />
               <p class="ml-2 m-0 ">
                 {{ $page.post.author.name }}
               </p>
-            </div>
+            </g-link>
           </div>
           <div class="border-top p-4">
             <p>
