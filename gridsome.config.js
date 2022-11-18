@@ -37,5 +37,11 @@ module.exports = {
         path: "/author/:id",
       },
     ],
+    Category: [
+      {
+        component: "./src/templates/Category.vue",
+        path: "/category/:id",
+      },
+    ],
   },
 };

@@ -23,13 +23,14 @@ export default {
               {{ new Date($page.post.publishedAt).toDateString() }}
             </h6>
             <div class="d-flex gap-1x3rem">
-              <div
+              <g-link
                 v-for="category in $page.post.categories"
                 v-bind:key="category.id"
-                class="badge badge-primary"
+                class="badge badge-primary badge-lg"
+                :to="`/category/${category.id}`"
               >
                 {{ category.title }}
-              </div>
+              </g-link>
             </div>
             <g-link
               :to="`/author/${$page.post.author.id}`"

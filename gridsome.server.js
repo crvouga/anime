@@ -45,7 +45,9 @@ module.exports = function(api) {
       *[_type == "category"]{
         _id,
         title,
-        description,
+        "posts": *[_type == "post" && references(^._id)]{
+          _id,
+        }
       }
     `);
 
@@ -54,6 +56,10 @@ module.exports = function(api) {
         id: category._id,
         title: category.title,
         description: category.description,
+        posts: store.createReference(
+          typeName.Post,
+          category.posts.map((post) => post._id)
+        ),
       });
     }
 
