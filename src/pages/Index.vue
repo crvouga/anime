@@ -76,7 +76,7 @@ export default {
 
 <template>
   <Layout>
-    <section class="container">
+    <section class="container mt-4">
       <h2 class="row m-0">
         Posts
       </h2>

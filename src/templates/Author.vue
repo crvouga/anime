@@ -50,7 +50,7 @@ export default {
             {{ $page.author.name }}
           </h1>
 
-          <p class="h5 m-0">
+          <p class="h5 m-0 text-muted">
             {{ $page.author.bio }}
           </p>
         </div>
