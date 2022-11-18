@@ -86,16 +86,17 @@ export default {
           v-for="edge of $page.allPost.edges"
           v-bind:key="edge.node.id"
         >
-          <PostCard
-            :id="edge.node.id"
-            :title="edge.node.title"
-            :image="edge.node.mainImage"
-            :categories="edge.node.categories"
-            :publishedAt="edge.node.publishedAt"
-            :authorName="edge.node.author.name"
-            :authorImage="edge.node.author.image"
-            :authorId="edge.node.author.id"
-          />
+          <g-link :to="`/post/${edge.node.id}`" class="link">
+            <PostCard
+              :title="edge.node.title"
+              :image="edge.node.mainImage"
+              :categories="edge.node.categories"
+              :publishedAt="edge.node.publishedAt"
+              :authorName="edge.node.author.name"
+              :authorImage="edge.node.author.image"
+              :authorId="edge.node.author.id"
+            />
+          </g-link>
         </div>
       </div>
     </section>

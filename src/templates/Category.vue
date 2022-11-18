@@ -54,16 +54,17 @@ export default {
           v-for="post of $page.category.posts"
           v-bind:key="post.id"
         >
-          <PostCard
-            :id="post.id"
-            :title="post.title"
-            :image="post.mainImage"
-            :categories="post.categories"
-            :publishedAt="post.publishedAt"
-            :authorId="post.author.id"
-            :authorName="post.author.name"
-            :authorImage="post.author.image"
-          />
+          <g-link :to="`/post/${post.id}`" class="link">
+            <PostCard
+              :title="post.title"
+              :image="post.mainImage"
+              :categories="post.categories"
+              :publishedAt="post.publishedAt"
+              :authorId="post.author.id"
+              :authorName="post.author.name"
+              :authorImage="post.author.image"
+            />
+          </g-link>
         </div>
       </div>
     </main>
