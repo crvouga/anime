@@ -41,7 +41,7 @@ export default {
             Category
           </p>
           <div class="mt-2" />
-          <p class="h1 bg-primary text-white d-inline px-2 py-1 rounded m-0">
+          <p class="h2 bg-primary text-white d-inline px-2 py-1 rounded m-0">
             {{ $page.category.title }}
           </p>
         </div>
