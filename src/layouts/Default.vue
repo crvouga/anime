@@ -13,6 +13,16 @@ export default {
       activePath: this.$router.currentRoute.path,
     };
   },
+  methods: {
+    push(path) {
+      if (this.activePath === path) {
+        // pushing a route in this condition throws an error in the console
+        return;
+      }
+
+      this.$router.push(path);
+    },
+  },
 };
 </script>
 
@@ -35,23 +45,20 @@ export default {
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto">
-            <b-nav-item :active="activePath === '/'">
-              <g-link class="text-inherit font-semi-bold" to="/">
-                Home
-              </g-link>
+          <b-navbar-nav class="ml-auto text-center font-semi-bold">
+            <b-nav-item :active="activePath === '/'" @click="push('/')">
+              Home
             </b-nav-item>
 
-            <b-nav-item :active="activePath === '/post'">
-              <g-link class="text-inherit font-semi-bold" to="/post">
-                Posts
-              </g-link>
+            <b-nav-item :active="activePath === '/post'" @click="push('/post')">
+              Posts
             </b-nav-item>
 
-            <b-nav-item :active="activePath === '/author'">
-              <g-link class="text-inherit font-semi-bold" to="/author">
-                Authors
-              </g-link>
+            <b-nav-item
+              :active="activePath === '/author'"
+              @click="push('/author')"
+            >
+              Authors
             </b-nav-item>
           </b-navbar-nav>
 
@@ -63,11 +70,14 @@ export default {
     <slot />
 
     <footer class="container foot">
+      <g-link
+        class="link btn btn-primary"
+        to="https://animechrisvouga.sanity.studio/"
+      >
+        Sanity Studio
+      </g-link>
       <g-link class="link" to="https://www.chrisvouga.dev/">
         Made with ❤️ by Chris Vouga
-      </g-link>
-      <g-link class="link" to="https://animechrisvouga.sanity.studio/">
-        Sanity Studio
       </g-link>
     </footer>
   </div>
