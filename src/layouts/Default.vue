@@ -17,7 +17,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <!-- why? https://stackoverflow.com/questions/1417934/how-to-prevent-scrollbar-from-repositioning-web-page -->
+  <div style="padding-left: calc(100vw - 100%);">
     <b-navbar
       toggleable="lg"
       type="dark"
