@@ -18,12 +18,18 @@ module.exports = {
   ],
   // this doesn't work with gql source plugin
   // docs:https://gridsome.org/docs/templates/
-  // templates: {
-  //   Anime: [
-  //     {
-  //       component: "./src/templates/Anime.vue",
-  //       path: "/anime/:id",
-  //     },
-  //   ],
-  // },
+  templates: {
+    // Anime: [
+    //   {
+    //     component: "./src/templates/Anime.vue",
+    //     path: "/anime/:id",
+    //   },
+    // ],
+    Post: [
+      {
+        component: "./src/templates/Post.vue",
+        path: "/post/:slug",
+      },
+    ],
+  },
 };

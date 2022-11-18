@@ -53,14 +53,19 @@ export default {
 
 <page-query>
 {
-  allPost{
-    edges{
-      node{
+  allPost {
+    edges {
+      node {
         id
         title
+        slug
+        categories {
+          id
+          title
+        }
         publishedAt
         mainImage
-        author{
+        author {
           image
           name
         }
@@ -82,10 +87,13 @@ export default {
           v-for="edge of $page.allPost.edges"
           v-bind:key="edge.node.id"
         >
-          <g-link class="link" :to="`/post/${edge.node.id}`">
+          <g-link class="link" :to="`/post/${edge.node.slug}`">
             <PostCard
               :title="edge.node.title"
               :image="edge.node.mainImage"
+              :categoryNames="
+                edge.node.categories.map((category) => category.title)
+              "
               :publishedAt="edge.node.publishedAt"
               :authorName="edge.node.author.name"
               :authorImage="edge.node.author.image"

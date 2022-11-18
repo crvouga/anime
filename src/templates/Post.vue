@@ -1,5 +1,9 @@
 <template>
-  <main>
-    Post
-  </main>
+  <Layout>
+    <main></main>
+  </Layout>
 </template>
+
+<page-query>
+    
+</page-query>

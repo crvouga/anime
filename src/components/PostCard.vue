@@ -8,6 +8,8 @@ export default {
     publishedAt: String,
     authorImage: String,
     authorName: String,
+    // array of strings
+    categoryNames: Array,
   },
   components: { AspectRatio },
 };
@@ -26,6 +28,15 @@ export default {
         <h6 class="text-muted mb-2">
           {{ new Date(publishedAt).toDateString() }}
         </h6>
+        <div class="d-flex badge-gap">
+          <div
+            v-for="name in categoryNames"
+            v-bind:key="name"
+            class="badge badge-primary"
+          >
+            {{ name }}
+          </div>
+        </div>
         <div class="flex-1"></div>
         <div class="d-flex align-items-center">
           <b-avatar class="mr-2" :src="authorImage" />
@@ -45,5 +56,9 @@ export default {
 }
 .margin-top-auto {
   margin-top: auto;
+}
+
+.badge-gap {
+  gap: 0.333rem;
 }
 </style>

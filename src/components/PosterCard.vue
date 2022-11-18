@@ -10,7 +10,7 @@ export default {
   props: {
     src: String,
     title: String,
-    subtitle: String,
+    subtitle: [String, Number],
     loading: Boolean,
   },
 };
