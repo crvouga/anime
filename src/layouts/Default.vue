@@ -27,13 +27,12 @@ export default {
 </script>
 
 <template>
-  <!-- why? https://stackoverflow.com/questions/1417934/how-to-prevent-scrollbar-from-repositioning-web-page -->
-  <div style="padding-left: calc(100vw - 100%);">
+  <div class="h-screen d-flex flex-column">
     <b-navbar
       toggleable="lg"
       type="dark"
       variant="primary"
-      class="position-sticky top-0 z-index-nav"
+      class="scrollbar-jitter-fix position-sticky top-0 z-index-nav"
     >
       <b-container>
         <b-navbar-brand>
@@ -46,6 +45,7 @@ export default {
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto text-center font-semi-bold">
+            <!-- why not g-link? g-link acts weird with b-nav-item -->
             <b-nav-item :active="activePath === '/'" @click="push('/')">
               Home
             </b-nav-item>
@@ -67,18 +67,21 @@ export default {
       </b-container>
     </b-navbar>
 
-    <slot />
+    <div class="flex-1 scrollbar-jitter-fix">
+      <slot />
+    </div>
 
-    <footer class="container foot">
-      <g-link
-        class="link btn btn-primary"
-        to="https://animechrisvouga.sanity.studio/"
+    <footer class=" bg-dark mt-5 scrollbar-jitter-fix">
+      <div
+        class="container d-flex flex-column justify-content-center align-items-center py-5 font-weight-bold"
       >
-        Sanity Studio
-      </g-link>
-      <g-link class="link" to="https://www.chrisvouga.dev/">
-        Made with ❤️ by Chris Vouga
-      </g-link>
+        <g-link class="link" to="https://animechrisvouga.sanity.studio/">
+          Sanity Studio
+        </g-link>
+        <g-link class="link mt-4" to="https://www.chrisvouga.dev/">
+          Made with ❤️ by Chris Vouga
+        </g-link>
+      </div>
     </footer>
   </div>
 </template>
@@ -115,5 +118,22 @@ export default {
 
 .text-inherit {
   color: inherit;
+}
+
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* why? https://stackoverflow.com/questions/1417934/how-to-prevent-scrollbar-from-repositioning-web-page */
+.scrollbar-jitter-fix {
+  padding-left: calc(100vw - 100%);
 }
 </style>

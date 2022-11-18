@@ -44,10 +44,10 @@ export default {
         </div>
       </div>
 
-      <h2 class="row m-0">
+      <h2 class="row m-0 text-center d-block">
         Authors
       </h2>
-      <div class="row">
+      <div class="row justify-content-center">
         <div
           class="col-lg-3 col-md-4 col-12 p-2"
           v-for="edge of $page.allAuthor.edges"
