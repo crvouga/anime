@@ -1,6 +1,5 @@
 <script>
 import AspectRatio from "./AspectRatio.vue";
-import LoadingImage from "./LoadingImage.vue";
 
 export default {
   props: {
@@ -37,17 +36,21 @@ export default {
       required: true,
     },
   },
-  components: { AspectRatio, LoadingImage },
+  components: {
+    AspectRatio,
+  },
 };
 </script>
 
 <template>
-  <AspectRatio :w="1" :h="1" class="rounded border">
+  <AspectRatio :w="7" :h="8" class="rounded border">
     <g-link
       :to="`/post/${id}`"
       class="w-100 h-100 d-flex flex-column link text-decoration-none"
     >
-      <LoadingImage :w="16" :h="9" :src="image" />
+      <AspectRatio class="w-100" :w="16" :h="9">
+        <b-img-lazy class="w-100 h-100 object-cover" :src="image" />
+      </AspectRatio>
       <div class="border-top p-3 flex-1 d-flex flex-column">
         <h5 class="text-truncate mb-0">
           {{ title }}
@@ -55,7 +58,7 @@ export default {
         <h6 class="text-muted mb-2">
           {{ new Date(publishedAt).toDateString() }}
         </h6>
-        <div class="d-flex badge-gap">
+        <div class="d-flex badge-gap flex-wrap">
           <g-link
             v-for="category in categories"
             v-bind:key="category.id"
@@ -68,7 +71,7 @@ export default {
         <div class="flex-1"></div>
         <g-link
           :to="`/author/${authorId}`"
-          class="link d-flex align-items-center text-decoration-none"
+          class="link d-flex align-items-center text-decoration-none mt-2"
         >
           <b-avatar class="mr-2" :src="authorImage" />
           <p class="m-0">{{ authorName }}</p>
