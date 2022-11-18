@@ -27,25 +27,22 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen d-flex flex-column">
+  <div class="h-min-screen d-flex flex-column">
     <b-navbar
       toggleable="lg"
       type="dark"
       variant="primary"
-      class="scrollbar-jitter-fix position-sticky top-0 z-index-nav"
+      class="scrollbar-jitter-fix position-sticky top-0 z-index-nav font-semi-bold"
     >
-      <b-container>
-        <b-navbar-brand>
-          <g-link class="text-white font-bold" to="/">
-            {{ $static.metadata.siteName }}
-          </g-link>
+      <div class="container">
+        <b-navbar-brand class="ml-3 font-weight-bold" @click="push('/')">
+          {{ $static.metadata.siteName }}
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav class="ml-auto text-center font-semi-bold">
-            <!-- why not g-link? g-link acts weird with b-nav-item -->
+          <b-navbar-nav class="ml-auto text-center">
             <b-nav-item :active="activePath === '/'" @click="push('/')">
               Home
             </b-nav-item>
@@ -64,7 +61,7 @@ export default {
 
           <!-- Right aligned nav items -->
         </b-collapse>
-      </b-container>
+      </div>
     </b-navbar>
 
     <div class="flex-1 scrollbar-jitter-fix">
@@ -124,8 +121,8 @@ export default {
   font-weight: bold;
 }
 
-.h-screen {
-  height: 100vh;
+.h-min-screen {
+  min-height: 100vh;
 }
 
 .flex-1 {
