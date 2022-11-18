@@ -2,13 +2,11 @@
 import { gql } from "graphql-request";
 import PosterCard from "../components/PosterCard.vue";
 import { animeClient } from "../anime-client";
-import AspectRatio from "../components/AspectRatio.vue";
 import PostCard from "../components/PostCard.vue";
 
 export default {
   components: {
     PosterCard,
-    AspectRatio,
     PostCard,
   },
   data() {

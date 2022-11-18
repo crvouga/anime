@@ -1,6 +1,21 @@
-<script setup>
-const { w, h } = defineProps(["w", "h"]);
-const viewBox = [0, 0, w, h].join(" ");
+<script>
+export default {
+  props: {
+    w: {
+      type: Number,
+      required: true,
+    },
+    h: {
+      type: Number,
+      required: true,
+    },
+  },
+  computed: {
+    viewBox() {
+      return [0, 0, this.w, this.h].join(" ");
+    },
+  },
+};
 </script>
 
 <template>

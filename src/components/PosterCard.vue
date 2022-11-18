@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <AspectRatio class="rounded border overflow-hidden" w="18" h="32">
+  <AspectRatio class="rounded border overflow-hidden" :w="18" :h="32">
     <Poster :loading="loading" :src="src" />
     <div class="p-2">
       <b-skeleton-wrapper :loading="loading">

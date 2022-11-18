@@ -1,5 +1,6 @@
 <script>
 import AspectRatio from "./AspectRatio.vue";
+import LoadingImage from "./LoadingImage.vue";
 
 export default {
   props: {
@@ -36,19 +37,17 @@ export default {
       required: true,
     },
   },
-  components: { AspectRatio },
+  components: { AspectRatio, LoadingImage },
 };
 </script>
 
 <template>
-  <AspectRatio w="1" h="1" class="rounded border">
+  <AspectRatio :w="1" :h="1" class="rounded border">
     <g-link
       :to="`/post/${id}`"
       class="w-100 h-100 d-flex flex-column link text-decoration-none"
     >
-      <AspectRatio w="16" h="9">
-        <img class="w-100 h-100 object-cover" :src="image" />
-      </AspectRatio>
+      <LoadingImage :w="16" :h="9" :src="image" />
       <div class="border-top p-3 flex-1 d-flex flex-column">
         <h5 class="text-truncate mb-0">
           {{ title }}

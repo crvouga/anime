@@ -12,7 +12,7 @@ export default {
     <main class="container">
       <div class="row justify-content-center">
         <div class="col-sm-10 col-md-8 col-lg-6 border rounded p-0">
-          <AspectRatio w="16" h="9">
+          <AspectRatio :w="16" :h="9">
             <img class="w-100 h-100" :src="$page.post.mainImage" />
           </AspectRatio>
           <div class="p-4 border-top">

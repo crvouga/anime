@@ -2,6 +2,7 @@
 import { gql } from "graphql-request";
 import { animeClient } from "../../anime-client";
 import AspectRatio from "../../components/AspectRatio.vue";
+import LoadingImage from "../../components/LoadingImage.vue";
 import PosterCard from "../../components/PosterCard.vue";
 import ReadMore from "../../components/ReadMore.vue";
 
@@ -10,6 +11,7 @@ export default {
     AspectRatio,
     PosterCard,
     ReadMore,
+    LoadingImage,
   },
   data() {
     return {
@@ -24,6 +26,9 @@ export default {
     },
     bannerImage() {
       return this.media?.bannerImage ?? "";
+    },
+    coverImage() {
+      return this.media?.coverImage?.extraLarge ?? "";
     },
     title() {
       return this.media?.title.english ?? this.media?.title.native;
@@ -62,6 +67,9 @@ export default {
               id
               bannerImage
               description
+              coverImage {
+                extraLarge
+              }
               startDate {
                 year
               }
@@ -121,9 +129,8 @@ export default {
       </div>
     </main>
     <main v-else-if="data" class="container p-0">
-      <AspectRatio w="21" h="9" class="bg-dark">
-        <img class="w-100 h-100 object-cover" :src="bannerImage" />
-      </AspectRatio>
+      <LoadingImage :w="21" :h="9" :src="bannerImage || coverImage" />
+
       <section class="container">
         <h1 class="mb-0">{{ title }}</h1>
         <p class="h6 text-muted mb-0">{{ dateRange }}</p>
