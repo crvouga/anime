@@ -14,6 +14,7 @@ query getAuthor($id: ID) {
       publishedAt
       body
       author {
+        id
         name
         image
       }
@@ -68,18 +69,16 @@ export default {
               v-for="post in $page.author.posts"
               v-bind:key="post.id"
             >
-              <g-link class="link" :to="`/post/${post.id}`">
-                <PostCard
-                  :title="post.title"
-                  :image="post.mainImage"
-                  :categoryNames="
-                    post.categories.map((category) => category.title)
-                  "
-                  :publishedAt="post.publishedAt"
-                  :authorName="post.author.name"
-                  :authorImage="post.author.image"
-                />
-              </g-link>
+              <PostCard
+                :id="post.id"
+                :title="post.title"
+                :image="post.mainImage"
+                :categories="post.categories"
+                :publishedAt="post.publishedAt"
+                :authorId="post.author.id"
+                :authorName="post.author.name"
+                :authorImage="post.author.image"
+              />
             </div>
           </div>
         </div>

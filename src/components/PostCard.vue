@@ -3,13 +3,38 @@ import AspectRatio from "./AspectRatio.vue";
 
 export default {
   props: {
-    image: String,
-    title: String,
-    publishedAt: String,
-    authorImage: String,
-    authorName: String,
-    // array of strings
-    categoryNames: Array,
+    id: {
+      type: String,
+      required: true,
+    },
+    image: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    publishedAt: {
+      type: String,
+      required: true,
+    },
+    authorImage: {
+      type: String,
+      required: true,
+    },
+    authorName: {
+      type: String,
+      required: true,
+    },
+    authorId: {
+      type: String,
+      required: true,
+    },
+    categories: {
+      type: Array, // of { id: String, title: String }
+      required: true,
+    },
   },
   components: { AspectRatio },
 };
@@ -17,7 +42,10 @@ export default {
 
 <template>
   <AspectRatio w="1" h="1" class="rounded border">
-    <div class="w-100 h-100 d-flex flex-column">
+    <g-link
+      :to="`/post/${id}`"
+      class="w-100 h-100 d-flex flex-column link text-decoration-none"
+    >
       <AspectRatio w="16" h="9">
         <img class="w-100 h-100 object-cover" :src="image" />
       </AspectRatio>
@@ -29,21 +57,25 @@ export default {
           {{ new Date(publishedAt).toDateString() }}
         </h6>
         <div class="d-flex badge-gap">
-          <div
-            v-for="name in categoryNames"
-            v-bind:key="name"
-            class="badge badge-primary"
+          <g-link
+            v-for="category in categories"
+            v-bind:key="category.id"
+            class="link badge badge-primary"
+            :to="`/category/${category.id}`"
           >
-            {{ name }}
-          </div>
+            {{ category.title }}
+          </g-link>
         </div>
         <div class="flex-1"></div>
-        <div class="d-flex align-items-center">
+        <g-link
+          :to="`/author/${authorId}`"
+          class="link d-flex align-items-center text-decoration-none"
+        >
           <b-avatar class="mr-2" :src="authorImage" />
-          <p class="m-0 text-muted">{{ authorName }}</p>
-        </div>
+          <p class="m-0">{{ authorName }}</p>
+        </g-link>
       </div>
-    </div>
+    </g-link>
   </AspectRatio>
 </template>
 
@@ -60,5 +92,8 @@ export default {
 
 .badge-gap {
   gap: 0.333rem;
+}
+.text-decoration-none {
+  text-decoration: none;
 }
 </style>
