@@ -151,14 +151,14 @@ module.exports = function(api) {
 
   // idk how to make redirects work
   // https://gridsome.org/docs/dynamic-routing/#generating-rewrite-rules
-  api.afterBuild(({ redirects }) => {
-    for (const rule of redirects) {
-      // rule.from   - The dynamic path
-      // rule.to     - The HTML file path
-      // rule.status - 200 if rewrite rule
-      console.log(rule);
-    }
-  });
+  // api.afterBuild(({ redirects }) => {
+  //   for (const rule of redirects) {
+  //     // rule.from   - The dynamic path
+  //     // rule.to     - The HTML file path
+  //     // rule.status - 200 if rewrite rule
+  //     console.log(rule);
+  //   }
+  // });
 
   api.createPages(async ({ createPage, graphql }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/
