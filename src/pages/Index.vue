@@ -78,7 +78,7 @@ export default {
       </h2>
       <div class="row">
         <div
-          class="col-lg-4 col-md-6 col-12"
+          class="col-lg-4 col-md-6 col-12 p-2"
           v-for="edge of $page.allPost.edges"
           v-bind:key="edge.node.id"
         >
