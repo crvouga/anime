@@ -29,7 +29,32 @@ module.exports = function(api) {
       Category: "Category",
       Author: "Author",
       Post: "Post",
+      SiteSettings: "SiteSettings",
     };
+
+    //
+    //
+    //
+    // Site Settings
+    //
+    //
+    //
+
+    const siteSettingsCol = await addCollection(typeName.SiteSettings);
+
+    const siteSettings = await sanityClient.fetch(`
+      *[_type == "siteSettings"][0]{
+          _id,
+          title,
+          description,
+      }
+    `);
+
+    siteSettingsCol.addNode({
+      id: siteSettings._id,
+      title: siteSettings.title,
+      description: siteSettings.description,
+    });
 
     //
     //

@@ -7,9 +7,10 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import author from "./author";
 import category from "./category";
 import post from "./post";
+import siteSettings from "./siteSettings";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   name: "default",
-  types: schemaTypes.concat([post, author, category]),
+  types: schemaTypes.concat([post, author, category, siteSettings]),
 });
