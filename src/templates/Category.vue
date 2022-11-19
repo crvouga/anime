@@ -59,7 +59,9 @@ export default {
             Category
           </p>
           <div class="mt-2" />
-          <p class="h5 bg-primary text-white d-inline px-2 py-1 rounded m-0">
+          <p
+            class="h5 bg-primary font-weight-bold text-white d-inline px-2 py-1 rounded m-0"
+          >
             {{ $page.category.title }}
           </p>
         </div>
@@ -87,3 +89,9 @@ export default {
     </main>
   </Layout>
 </template>
+
+<style scoped>
+.font-weight-bold {
+  font-weight: bold;
+}
+</style>
