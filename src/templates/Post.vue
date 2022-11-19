@@ -14,14 +14,14 @@ export default {
         <div class="col-12">
           <b-breadcrumb>
             <b-breadcrumb-item>
-              <g-link class="link" to="/">
+              <Link class="link" to="/">
                 Home
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item>
-              <g-link class="link" to="/post">
+              <Link class="link" to="/post">
                 Posts
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item disabled class="text-truncate">
               {{ $page.post.title }}
@@ -43,16 +43,16 @@ export default {
               {{ new Date($page.post.publishedAt).toDateString() }}
             </h6>
             <div class="d-flex gap-1x3rem">
-              <g-link
+              <Link
                 v-for="category in $page.post.categories"
                 v-bind:key="category.id"
                 class="badge badge-primary badge-lg"
                 :to="`/category/${category.id}`"
               >
                 {{ category.title }}
-              </g-link>
+              </Link>
             </div>
-            <g-link
+            <Link
               :to="`/author/${$page.post.author.id}`"
               class="link mt-2 d-flex align-items-center"
             >
@@ -60,7 +60,7 @@ export default {
               <p class="ml-2 m-0 ">
                 {{ $page.post.author.name }}
               </p>
-            </g-link>
+            </Link>
           </div>
           <div class="border-top p-4">
             <p>

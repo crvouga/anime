@@ -33,9 +33,9 @@ export default {
         <div class="col-12">
           <b-breadcrumb>
             <b-breadcrumb-item>
-              <g-link class="link" to="/">
+              <Link class="link" to="/">
                 Home
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item>
               Authors
@@ -53,7 +53,7 @@ export default {
           v-for="edge of $page.allAuthor.edges"
           v-bind:key="edge.node.id"
         >
-          <g-link :to="`/author/${edge.node.id}`" class="link">
+          <Link :to="`/author/${edge.node.id}`" class="link">
             <div
               class="rounded border d-flex align-items-center justify-content-center flex-column w-100 p-4"
             >
@@ -65,7 +65,7 @@ export default {
                 {{ edge.node.bio }}
               </p>
             </div>
-          </g-link>
+          </Link>
         </div>
       </div>
     </main>

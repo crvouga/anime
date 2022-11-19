@@ -86,7 +86,7 @@ export default {
           v-for="edge of $page.allPost.edges"
           v-bind:key="edge.node.id"
         >
-          <g-link :to="`/post/${edge.node.id}`" class="link">
+          <Link :to="`/post/${edge.node.id}`" class="link">
             <PostCard
               :title="edge.node.title"
               :image="edge.node.mainImage"
@@ -96,7 +96,7 @@ export default {
               :authorImage="edge.node.author.image"
               :authorId="edge.node.author.id"
             />
-          </g-link>
+          </Link>
         </div>
       </div>
     </section>
@@ -126,13 +126,13 @@ export default {
           v-for="media in allMedia"
           :key="media.id"
         >
-          <g-link class="link" :to="`/anime/${media.id}`">
+          <Link class="link" :to="`/anime/${media.id}`">
             <PosterCard
               :src="media.coverImage.extraLarge"
               :title="media.title.english ?? media.title.native"
               :subtitle="String(media.seasonYear)"
             />
-          </g-link>
+          </Link>
         </div>
       </div>
     </section>

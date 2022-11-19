@@ -1,5 +1,6 @@
 <script>
 import AspectRatio from "./AspectRatio.vue";
+import Link from "./Link.vue";
 
 export default {
   props: {
@@ -34,6 +35,7 @@ export default {
   },
   components: {
     AspectRatio,
+    Link,
   },
 };
 </script>
@@ -52,22 +54,22 @@ export default {
           {{ new Date(publishedAt).toDateString() }}
         </h6>
         <div class="d-flex badge-gap flex-wrap">
-          <g-link
+          <Link
             v-for="category in categories"
             v-bind:key="category.id"
             class="link badge badge-primary"
             :to="`/category/${category.id}`"
           >
             {{ category.title }}
-          </g-link>
+          </Link>
         </div>
-        <g-link
+        <Link
           :to="`/author/${authorId}`"
           class="link d-flex align-items-center text-decoration-none margin-top-auto"
         >
           <b-avatar class="mr-2" :src="authorImage" />
           <p class="m-0">{{ authorName }}</p>
-        </g-link>
+        </Link>
       </div>
     </div>
   </AspectRatio>

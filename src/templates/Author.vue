@@ -44,14 +44,14 @@ export default {
         <div class="col-12">
           <b-breadcrumb>
             <b-breadcrumb-item>
-              <g-link class="link" to="/">
+              <Link class="link" to="/">
                 Home
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item>
-              <g-link class="link" to="/author">
+              <Link class="link" to="/author">
                 Authors
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item disabled>
               {{ $page.author.name }}
@@ -89,7 +89,7 @@ export default {
               v-for="post in $page.author.posts"
               v-bind:key="post.id"
             >
-              <g-link :to="`/post/${post.id}`" class="link">
+              <Link :to="`/post/${post.id}`" class="link">
                 <PostCard
                   :title="post.title"
                   :image="post.mainImage"
@@ -99,7 +99,7 @@ export default {
                   :authorName="post.author.name"
                   :authorImage="post.author.image"
                 />
-              </g-link>
+              </Link>
             </div>
           </div>
         </div>

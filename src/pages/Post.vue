@@ -47,9 +47,9 @@ export default {
         <div class="col-12">
           <b-breadcrumb>
             <b-breadcrumb-item>
-              <g-link class="link" to="/">
+              <Link class="link" to="/">
                 Home
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item>
               Posts
@@ -65,7 +65,7 @@ export default {
         <div
           class="col-12 d-flex flex-wrap badge-gap justify-content-center w-100"
         >
-          <g-link
+          <Link
             :to="`/category/${edge.node.id}`"
             class="link"
             v-for="edge of $page.allCategory.edges"
@@ -74,7 +74,7 @@ export default {
             <div class="badge badge-primary badge-size">
               {{ edge.node.title }}
             </div>
-          </g-link>
+          </Link>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ export default {
           v-for="edge of $page.allPost.edges"
           v-bind:key="edge.node.id"
         >
-          <g-link :to="`/post/${edge.node.id}`" class="link">
+          <Link :to="`/post/${edge.node.id}`" class="link">
             <PostCard
               :title="edge.node.title"
               :image="edge.node.mainImage"
@@ -97,7 +97,7 @@ export default {
               :authorImage="edge.node.author.image"
               :authorId="edge.node.author.id"
             />
-          </g-link>
+          </Link>
         </div>
       </div>
     </main>

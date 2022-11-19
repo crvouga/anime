@@ -13,16 +13,6 @@ export default {
       activePath: this.$router.currentRoute.path,
     };
   },
-  methods: {
-    push(path) {
-      if (this.activePath === path) {
-        // pushing a route in this condition throws an error in the console
-        return;
-      }
-
-      this.$router.push(path);
-    },
-  },
 };
 </script>
 
@@ -36,28 +26,31 @@ export default {
     >
       <div class="container">
         <b-navbar-brand class="ml-3">
-          <g-link class="font-weight-bold text-white" to="/">
+          <Link class="font-weight-bold text-white" to="/">
             {{ $static.metadata.siteName }}
-          </g-link>
+          </Link>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto text-center">
-            <b-nav-item :active="activePath === '/'" @click="push('/')">
-              Home
+            <b-nav-item :active="activePath === '/'">
+              <Link to="/">
+                Home
+              </Link>
             </b-nav-item>
 
-            <b-nav-item :active="activePath === '/post'" @click="push('/post')">
-              Posts
+            <b-nav-item :active="activePath === '/post'">
+              <Link to="/post">
+                Posts
+              </Link>
             </b-nav-item>
 
-            <b-nav-item
-              :active="activePath === '/author'"
-              @click="push('/author')"
-            >
-              Authors
+            <b-nav-item :active="activePath === '/author'">
+              <Link to="/author">
+                Authors
+              </Link>
             </b-nav-item>
           </b-navbar-nav>
 
@@ -74,12 +67,12 @@ export default {
       <div
         class="container d-flex flex-column justify-content-center align-items-center py-5 font-weight-bold"
       >
-        <g-link class="link" to="https://animechrisvouga.sanity.studio/">
+        <Link class="link" to="https://animechrisvouga.sanity.studio/">
           Sanity Studio
-        </g-link>
-        <g-link class="link mt-4" to="https://www.chrisvouga.dev/">
+        </Link>
+        <Link class="link mt-4" to="https://www.chrisvouga.dev/">
           Made with ❤️ by Chris Vouga
-        </g-link>
+        </Link>
       </div>
     </footer>
   </div>

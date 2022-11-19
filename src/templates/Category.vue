@@ -40,14 +40,14 @@ export default {
         <div class="col-12">
           <b-breadcrumb>
             <b-breadcrumb-item>
-              <g-link class="link" to="/">
+              <Link class="link" to="/">
                 Home
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item>
-              <g-link class="link" to="/post">
+              <Link class="link" to="/post">
                 Posts
-              </g-link>
+              </Link>
             </b-breadcrumb-item>
             <b-breadcrumb-item disabled>
               <div class="badge badge-primary">
@@ -75,7 +75,7 @@ export default {
           v-for="post of $page.category.posts"
           v-bind:key="post.id"
         >
-          <g-link :to="`/post/${post.id}`" class="link">
+          <Link :to="`/post/${post.id}`" class="link">
             <PostCard
               :title="post.title"
               :image="post.mainImage"
@@ -85,7 +85,7 @@ export default {
               :authorName="post.author.name"
               :authorImage="post.author.image"
             />
-          </g-link>
+          </Link>
         </div>
       </div>
     </main>

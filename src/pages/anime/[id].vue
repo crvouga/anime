@@ -159,14 +159,14 @@ export default {
             v-for="relation in relations"
             v-bind:key="relation.id"
           >
-            <g-link class="link" :to="`/anime/${relation.id}`">
+            <Link class="link" :to="`/anime/${relation.id}`">
               <PosterCard
                 class="w-100"
                 :src="relation.coverImage.extraLarge"
                 :title="relation.title.english ?? relation.title.native"
                 :subtitle="relation?.startDate.year"
               />
-            </g-link>
+            </Link>
           </div>
         </div>
       </section>
