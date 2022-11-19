@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <span class="cursor-pointer" :to="to" @click.stop="clicked">
+  <span class="cursor-pointer" @click.stop="clicked">
     <slot />
   </span>
 </template>

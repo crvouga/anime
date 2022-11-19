@@ -39,21 +39,17 @@ export default {
       <div class="row">
         <div class="col-12">
           <b-breadcrumb>
-            <b-breadcrumb-item>
-              <Link class="link" to="/">
-                Home
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item>
-              <Link class="link" to="/post">
-                Posts
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item disabled>
+            <BreadcrumbItem to="/">
+              Home
+            </BreadcrumbItem>
+            <BreadcrumbItem to="/post">
+              Posts
+            </BreadcrumbItem>
+            <BreadcrumbItem disabled>
               <div class="badge badge-primary">
                 {{ $page.category.title }}
               </div>
-            </b-breadcrumb-item>
+            </BreadcrumbItem>
           </b-breadcrumb>
         </div>
       </div>

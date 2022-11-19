@@ -43,19 +43,15 @@ export default {
       <div class="row">
         <div class="col-12">
           <b-breadcrumb>
-            <b-breadcrumb-item>
-              <Link class="link" to="/">
-                Home
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item>
-              <Link class="link" to="/author">
-                Authors
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item disabled>
+            <BreadcrumbItem to="/">
+              Home
+            </BreadcrumbItem>
+            <BreadcrumbItem to="/author">
+              Authors
+            </BreadcrumbItem>
+            <BreadcrumbItem disabled>
               {{ $page.author.name }}
-            </b-breadcrumb-item>
+            </BreadcrumbItem>
           </b-breadcrumb>
         </div>
       </div>

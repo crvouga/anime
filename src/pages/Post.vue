@@ -46,14 +46,12 @@ export default {
       <div class="row">
         <div class="col-12">
           <b-breadcrumb>
-            <b-breadcrumb-item>
-              <Link class="link" to="/">
-                Home
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item>
+            <BreadcrumbItem to="/">
+              Home
+            </BreadcrumbItem>
+            <BreadcrumbItem>
               Posts
-            </b-breadcrumb-item>
+            </BreadcrumbItem>
           </b-breadcrumb>
         </div>
       </div>

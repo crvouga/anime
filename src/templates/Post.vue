@@ -13,19 +13,15 @@ export default {
       <div class="row">
         <div class="col-12">
           <b-breadcrumb>
-            <b-breadcrumb-item>
-              <Link class="link" to="/">
-                Home
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item>
-              <Link class="link" to="/post">
-                Posts
-              </Link>
-            </b-breadcrumb-item>
-            <b-breadcrumb-item disabled class="text-truncate">
+            <BreadcrumbItem to="/">
+              Home
+            </BreadcrumbItem>
+            <BreadcrumbItem to="/post">
+              Posts
+            </BreadcrumbItem>
+            <BreadcrumbItem disabled class="text-truncate">
               {{ $page.post.title }}
-            </b-breadcrumb-item>
+            </BreadcrumbItem>
           </b-breadcrumb>
         </div>
       </div>
