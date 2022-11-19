@@ -35,22 +35,28 @@ export default {
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav class="ml-auto text-center">
-            <b-nav-item :active="activePath === '/'">
-              <Link to="/">
-                Home
-              </Link>
+            <b-nav-item
+              router-component-name="g-link"
+              to="/"
+              :active="activePath === '/'"
+            >
+              Home
             </b-nav-item>
 
-            <b-nav-item :active="activePath === '/post'">
-              <Link to="/post">
-                Posts
-              </Link>
+            <b-nav-item
+              router-component-name="g-link"
+              :active="activePath === '/post'"
+              to="/post"
+            >
+              Posts
             </b-nav-item>
 
-            <b-nav-item :active="activePath === '/author'">
-              <Link to="/author">
-                Authors
-              </Link>
+            <b-nav-item
+              router-component-name="g-link"
+              to="/author"
+              :active="activePath === '/author'"
+            >
+              Authors
             </b-nav-item>
           </b-navbar-nav>
 

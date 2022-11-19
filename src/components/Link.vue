@@ -1,4 +1,13 @@
 <script>
+/**
+ *
+ *
+ *
+ * This component is a hack because <g-link /> was not working in production
+ *
+ *
+ *
+ */
 export default {
   props: {
     to: {
@@ -15,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <span class="cursor-pointer" @click="clicked">
+  <span class="cursor-pointer" @click.stop="clicked">
     <slot />
   </span>
 </template>
