@@ -17,16 +17,16 @@ export default {
   },
   methods: {
     clicked() {
-      this.$router.push(this.to);
+      // this.$router.push(this.to);
     },
   },
 };
 </script>
 
 <template>
-  <span class="cursor-pointer" @click.stop="clicked">
+  <g-link class="cursor-pointer" :to="to" @click.stop="clicked">
     <slot />
-  </span>
+  </g-link>
 </template>
 <style scoped>
 .cursor-pointer {
