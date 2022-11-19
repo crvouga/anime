@@ -76,22 +76,24 @@ export default {
 
 <template>
   <Layout>
-    <section class="container jumbotron">
-      <h1 class="display-4 font-weight-bold text-primary">Anime</h1>
-      <p class="lead">
-        Anime is the best thing in world, and the world needs a safe space for
-        anime fans. This is a blog where anime fans write about their favorite
-        anime.
-      </p>
-      <hr class="my-4" />
-      <p>
-        Read posts by avid anime watchers and manga readers.
-      </p>
-      <p class="lead">
-        <Link class="btn btn-primary btn-lg" to="/post" role="button">
-          See Posts</Link
-        >
-      </p>
+    <section class="jumbotron">
+      <div class="container">
+        <h1 class="display-4 font-weight-bold text-primary">Anime</h1>
+        <p class="lead">
+          Anime is the best thing in world, and the world needs a safe space for
+          anime fans. This is a blog where anime fans write about their favorite
+          anime.
+        </p>
+        <hr class="my-4" />
+        <p>
+          Read posts by avid anime watchers and manga readers.
+        </p>
+        <p class="lead">
+          <Link class="btn btn-primary btn-lg" to="/post" role="button">
+            See Posts</Link
+          >
+        </p>
+      </div>
     </section>
 
     <section class="container mt-4">
