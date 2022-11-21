@@ -77,7 +77,7 @@ export default {
 <template>
   <Layout>
     <section class="jumbotron">
-      <div class="container">
+      <div class="container p-0">
         <h1 class="display-4 font-weight-bold text-primary">Anime</h1>
         <p class="lead">
           Anime is the best thing in world, and the world needs a safe space for
