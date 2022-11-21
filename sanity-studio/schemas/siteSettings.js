@@ -15,5 +15,10 @@ export default {
       title: "Site Description",
       type: "text",
     },
+    {
+      name: "hero",
+      title: "Hero",
+      type: "hero",
+    },
   ],
 };

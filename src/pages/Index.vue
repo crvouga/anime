@@ -51,6 +51,20 @@ export default {
 
 <page-query>
 {
+
+  siteSettings(id:"siteSettings"){
+    id
+    title
+    description
+    hero{
+      actionHref
+      actionLabel
+      body
+      subBody
+      title
+    }
+  }
+
   allPost {
     edges {
       node {
@@ -78,20 +92,24 @@ export default {
   <Layout>
     <section class="jumbotron">
       <div class="container p-0">
-        <h1 class="display-4 font-weight-bold text-primary">Anime</h1>
+        <h1 class="display-4 font-weight-bold text-primary">
+          {{ $page.siteSettings.hero.title }}
+        </h1>
         <p class="lead">
-          Anime is the best thing in world, and the world needs a safe space for
-          anime fans. This is a blog where anime fans write about their favorite
-          anime.
+          {{ $page.siteSettings.hero.body }}
         </p>
         <hr class="my-4" />
         <p>
-          Read posts by avid anime watchers and manga readers.
+          {{ $page.siteSettings.hero.subBody }}
         </p>
         <p class="lead">
-          <Link class="btn btn-primary btn-lg" to="/post" role="button">
-            See Posts</Link
+          <Link
+            class="btn btn-primary btn-lg"
+            :to="$page.siteSettings.hero.actionHref"
+            role="button"
           >
+            {{ $page.siteSettings.hero.actionLabel }}
+          </Link>
         </p>
       </div>
     </section>

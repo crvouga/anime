@@ -44,9 +44,16 @@ module.exports = function(api) {
 
     const siteSettings = await sanityClient.fetch(`
       *[_type == "siteSettings"][0]{
-          _id,
+        _id,
+        title,
+        description,
+        hero {
+          actionHref,
+          actionLabel,
           title,
-          description,
+          body,
+          subBody,
+        }
       }
     `);
 
@@ -54,6 +61,7 @@ module.exports = function(api) {
       id: siteSettings._id,
       title: siteSettings.title,
       description: siteSettings.description,
+      hero: siteSettings.hero,
     });
 
     //
