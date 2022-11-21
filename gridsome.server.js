@@ -1,4 +1,5 @@
-// const { z } = require("zod");
+const { z } = require("zod");
+const groq = require("groq");
 // Server API makes it possible to hook into various parts of Gridsome
 // on server-side and add custom data to the GraphQL data layer.
 // Learn more: https://gridsome.org/docs/server-api/
@@ -42,7 +43,7 @@ module.exports = function(api) {
 
     const siteSettingsCol = await addCollection(typeName.SiteSettings);
 
-    const siteSettings = await sanityClient.fetch(`
+    const siteSettings = await sanityClient.fetch(groq`
       *[_type == "siteSettings"][0]{
         _id,
         title,
@@ -57,11 +58,28 @@ module.exports = function(api) {
       }
     `);
 
+    const Hero = z.object({
+      actionHref: z.string(),
+      actionLabel: z.string(),
+      title: z.string(),
+      body: z.string(),
+      subBody: z.string(),
+    });
+
+    const SiteSettings = z.object({
+      _id: z.string(),
+      title: z.string(),
+      description: z.string(),
+      hero: Hero,
+    });
+
+    const parsed = SiteSettings.parse(siteSettings);
+
     siteSettingsCol.addNode({
-      id: siteSettings._id,
-      title: siteSettings.title,
-      description: siteSettings.description,
-      hero: siteSettings.hero,
+      id: parsed._id,
+      title: parsed.title,
+      description: parsed.description,
+      hero: parsed.hero,
     });
 
     //
@@ -74,7 +92,7 @@ module.exports = function(api) {
 
     const categoryCol = addCollection(typeName.Category);
 
-    const categories = await sanityClient.fetch(`
+    const categories = await sanityClient.fetch(groq`
       *[_type == "category"]{
         _id,
         title,
@@ -84,7 +102,19 @@ module.exports = function(api) {
       }
     `);
 
-    for (const category of categories) {
+    const Category = z.object({
+      _id: z.string(),
+      title: z.string(),
+      posts: z.array(
+        z.object({
+          _id: z.string(),
+        })
+      ),
+    });
+
+    const categoriesParsed = z.array(Category).parse(categories);
+
+    for (const category of categoriesParsed) {
       categoryCol.addNode({
         id: category._id,
         title: category.title,
@@ -106,7 +136,7 @@ module.exports = function(api) {
 
     const authorCol = addCollection(typeName.Author);
 
-    const authors = await sanityClient.fetch(`
+    const authors = await sanityClient.fetch(groq`
       *[_type == "author"]{
           _id,
           name,
@@ -122,7 +152,24 @@ module.exports = function(api) {
         }
     `);
 
-    for (const author of authors) {
+    const Author = z.object({
+      _id: z.string(),
+      name: z.string(),
+      image: z.object({
+        url: z.string(),
+      }),
+      slug: z.string(),
+      bio: z.string(),
+      posts: z.array(
+        z.object({
+          _id: z.string(),
+        })
+      ),
+    });
+
+    const authorsParsed = z.array(Author).parse(authors);
+
+    for (const author of authorsParsed) {
       authorCol.addNode({
         id: author._id,
         name: author.name,
@@ -145,7 +192,7 @@ module.exports = function(api) {
 
     const postsCol = addCollection(typeName.Post);
 
-    const posts = await sanityClient.fetch(`
+    const posts = await sanityClient.fetch(groq`
       *[_type == "post"]{
         _id,
         title,
@@ -165,7 +212,28 @@ module.exports = function(api) {
       }
     `);
 
-    for (const post of posts) {
+    const Post = z.object({
+      _id: z.string(),
+      title: z.string(),
+      publishedAt: z.string(),
+      mainImage: z.object({
+        url: z.string(),
+      }),
+      slug: z.string(),
+      body: z.string(),
+      categories: z.array(
+        z.object({
+          _id: z.string(),
+        })
+      ),
+      author: z.object({
+        _id: z.string(),
+      }),
+    });
+
+    const postsParsed = z.array(Post).parse(posts);
+
+    for (const post of postsParsed) {
       postsCol.addNode({
         id: post._id,
         title: post.title,
