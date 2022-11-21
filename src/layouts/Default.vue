@@ -73,12 +73,12 @@ export default {
       <div
         class="container d-flex flex-column justify-content-center align-items-center py-5 font-weight-bold"
       >
-        <Link class="text-primary" to="https://animechrisvouga.sanity.studio/">
+        <a class="text-primary" href="https://animechrisvouga.sanity.studio/">
           Sanity Studio
-        </Link>
-        <Link class="text-primary mt-4" to="https://www.chrisvouga.dev/">
+        </a>
+        <a class="text-primary mt-4" href="https://www.chrisvouga.dev/">
           Made with ❤️ by Chris Vouga
-        </Link>
+        </a>
       </div>
     </footer>
   </div>
