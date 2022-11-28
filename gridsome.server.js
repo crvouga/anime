@@ -176,6 +176,7 @@ module.exports = function(api) {
         image: author.image.url,
         slug: author.slug,
         bio: author.bio,
+
         posts: store.createReference(
           typeName.Post,
           author.posts.map((post) => post._id)
