@@ -14,8 +14,9 @@ RUN apt-get update && apt-get install -y \
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
-# Install dependencies
-RUN npm install
+# Clean install dependencies
+RUN rm -rf node_modules && \
+    npm install --build-from-source
 
 # Copy all files
 COPY . .
