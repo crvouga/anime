@@ -11,12 +11,18 @@ RUN apt-get update && apt-get install -y \
     g++ \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy package.json and package-lock.json
-COPY package.json package-lock.json ./
+# Set environment variable for OpenSSL
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
-# Clean install dependencies
-RUN rm -rf node_modules && \
-    npm install --build-from-source
+# Copy only package.json
+COPY package.json ./
+
+# Clean install dependencies with specific handling for sharp
+RUN rm -rf node_modules package-lock.json && \
+    npm install && \
+    rm -rf node_modules/sharp && \
+    npm install sharp --build-from-source && \
+    npm install postcss@8
 
 # Copy all files
 COPY . .
