@@ -1,5 +1,3 @@
-const { z } = require("zod");
-const groq = require("groq");
 // Server API makes it possible to hook into various parts of Gridsome
 // on server-side and add custom data to the GraphQL data layer.
 // Learn more: https://gridsome.org/docs/server-api/
@@ -7,24 +5,12 @@ const groq = require("groq");
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-const SanityClient = require("@sanity/client");
-
-//
-//
-// sanity example https://github.com/codewithkristian/sanity-blog-schema
-//
-//
-
-const sanityClient = SanityClient({
-  projectId: "rj21h13r",
-  dataset: "production",
-  useCdn: false,
-  apiVersion: "2021-03-25",
-});
+const { CMS } = require("./cms/impl");
 
 module.exports = function(api) {
   api.loadSource(async ({ addCollection, store }) => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+    const cms = CMS();
 
     const typeName = {
       Category: "Category",
@@ -42,44 +28,13 @@ module.exports = function(api) {
     //
 
     const siteSettingsCol = await addCollection(typeName.SiteSettings);
-
-    const siteSettings = await sanityClient.fetch(groq`
-      *[_type == "siteSettings"][0]{
-        _id,
-        title,
-        description,
-        hero {
-          actionHref,
-          actionLabel,
-          title,
-          body,
-          subBody,
-        }
-      }
-    `);
-
-    const Hero = z.object({
-      actionHref: z.string(),
-      actionLabel: z.string(),
-      title: z.string(),
-      body: z.string(),
-      subBody: z.string(),
-    });
-
-    const SiteSettings = z.object({
-      _id: z.string(),
-      title: z.string(),
-      description: z.string(),
-      hero: Hero,
-    });
-
-    const parsed = SiteSettings.parse(siteSettings);
+    const siteSettings = await cms.fetchSiteSettings();
 
     siteSettingsCol.addNode({
-      id: parsed._id,
-      title: parsed.title,
-      description: parsed.description,
-      hero: parsed.hero,
+      id: siteSettings._id,
+      title: siteSettings.title,
+      description: siteSettings.description,
+      hero: siteSettings.hero,
     });
 
     //
@@ -91,30 +46,9 @@ module.exports = function(api) {
     //
 
     const categoryCol = addCollection(typeName.Category);
+    const categories = await cms.fetchCategories();
 
-    const categories = await sanityClient.fetch(groq`
-      *[_type == "category"]{
-        _id,
-        title,
-        "posts": *[_type == "post" && references(^._id)]{
-          _id,
-        }
-      }
-    `);
-
-    const Category = z.object({
-      _id: z.string(),
-      title: z.string(),
-      posts: z.array(
-        z.object({
-          _id: z.string(),
-        })
-      ),
-    });
-
-    const categoriesParsed = z.array(Category).parse(categories);
-
-    for (const category of categoriesParsed) {
+    for (const category of categories) {
       categoryCol.addNode({
         id: category._id,
         title: category.title,
@@ -135,48 +69,15 @@ module.exports = function(api) {
     //
 
     const authorCol = addCollection(typeName.Author);
+    const authors = await cms.fetchAuthors();
 
-    const authors = await sanityClient.fetch(groq`
-      *[_type == "author"]{
-          _id,
-          name,
-          "image": image.asset->{
-            url,
-            metadata
-          },
-          "slug": slug.current,
-          bio,
-          "posts": *[_type == "post" && author._ref == ^._id]{
-            _id,
-          }
-        }
-    `);
-
-    const Author = z.object({
-      _id: z.string(),
-      name: z.string(),
-      image: z.object({
-        url: z.string(),
-      }),
-      slug: z.string(),
-      bio: z.string(),
-      posts: z.array(
-        z.object({
-          _id: z.string(),
-        })
-      ),
-    });
-
-    const authorsParsed = z.array(Author).parse(authors);
-
-    for (const author of authorsParsed) {
+    for (const author of authors) {
       authorCol.addNode({
         id: author._id,
         name: author.name,
         image: author.image.url,
         slug: author.slug,
         bio: author.bio,
-
         posts: store.createReference(
           typeName.Post,
           author.posts.map((post) => post._id)
@@ -192,49 +93,9 @@ module.exports = function(api) {
     //
 
     const postsCol = addCollection(typeName.Post);
+    const posts = await cms.fetchPosts();
 
-    const posts = await sanityClient.fetch(groq`
-      *[_type == "post"]{
-        _id,
-        title,
-        publishedAt,
-        "mainImage": mainImage.asset->{
-          url,
-          metadata,
-        },
-        "slug": slug.current,
-        body,
-        "categories": categories[]->{
-          _id
-        },
-        "author": author->{
-          _id
-        },
-      }
-    `);
-
-    const Post = z.object({
-      _id: z.string(),
-      title: z.string(),
-      publishedAt: z.string(),
-      mainImage: z.object({
-        url: z.string(),
-      }),
-      slug: z.string(),
-      body: z.string(),
-      categories: z.array(
-        z.object({
-          _id: z.string(),
-        })
-      ),
-      author: z.object({
-        _id: z.string(),
-      }),
-    });
-
-    const postsParsed = z.array(Post).parse(posts);
-
-    for (const post of postsParsed) {
+    for (const post of posts) {
       postsCol.addNode({
         id: post._id,
         title: post.title,

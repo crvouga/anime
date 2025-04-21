@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "gridsome build",
-    "dev": "gridsome develop",
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && yarn dev",
     "explore": "gridsome explore",
     "sanity:start": "cd sanity-studio && npx @sanity/cli start",
     "sanity:deploy": "cd sanity-studio && npx @sanity/cli deploy"
