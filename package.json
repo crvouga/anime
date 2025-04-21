@@ -6,7 +6,8 @@
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && yarn dev",
     "explore": "gridsome explore",
     "sanity:start": "cd sanity-studio && npx @sanity/cli start",
-    "sanity:deploy": "cd sanity-studio && npx @sanity/cli deploy"
+    "sanity:deploy": "cd sanity-studio && npx @sanity/cli deploy",
+    "preview": "docker build -t anime-blog . && docker run -p 80:80 anime-blog"
   },
   "dependencies": {
     "@gridsome/source-graphql": "^0.1.0",
