@@ -14,13 +14,13 @@ RUN apt-get update && apt-get install -y \
 # Set environment variable for OpenSSL
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
-# Copy only package.json
-COPY package.json ./
+# Copy package files
+COPY package*.json ./
 
-# Clean install dependencies with specific handling for sharp
-RUN rm -rf node_modules package-lock.json && \
-    npm install && \
-    rm -rf node_modules/sharp && \
+# Clean install dependencies
+RUN npm cache clean --force && \
+    rm -rf node_modules && \
+    npm ci && \
     npm install sharp --build-from-source && \
     npm install postcss@8
 
@@ -39,7 +39,6 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy built static files from the build stage to nginx serve directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose port 80
 EXPOSE 80
 
 # Start Nginx server
