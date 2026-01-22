@@ -20,8 +20,9 @@ COPY package*.json ./
 # Clean install dependencies
 RUN npm cache clean --force && \
     rm -rf node_modules && \
-    npm ci && \
-    npm install sharp --build-from-source && \
+    npm install -g node-gyp && \
+    npm install && \
+    npm rebuild sharp --build-from-source && \
     npm install postcss@8
 
 # Copy all files

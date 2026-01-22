@@ -7,7 +7,8 @@
     "explore": "gridsome explore",
     "sanity:start": "cd sanity-studio && npx @sanity/cli start",
     "sanity:deploy": "cd sanity-studio && npx @sanity/cli deploy",
-    "preview": "docker build -t anime-blog . && docker run -p 80:80 anime-blog"
+    "preview": "docker build -t anime-blog . && docker run -p 80:80 anime-blog",
+    "docker:preview": "docker build -t crvouga/anime-blog:latest . && docker run --rm -p 8011:80 crvouga/anime-blog:latest"
   },
   "dependencies": {
     "@gridsome/source-graphql": "^0.1.0",
@@ -19,5 +20,8 @@
     "groq": "^2.33.2",
     "prop-types": "^15.8.1",
     "zod": "^3.19.1"
+  },
+  "devDependencies": {
+    "node-gyp": "^10.0.0"
   }
 }
